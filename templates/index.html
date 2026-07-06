@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Insurance Claim System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #141e30, #243b55);
+            color: white;
+        }
+
+        .container {
+            margin-top: 40px;
+            background: white;
+            color: black;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .claim {
+            background: #ffdddd;
+            color: #b30000;
+        }
+
+        .no-claim {
+            background: #ddffdd;
+            color: #006600;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2 class="title">🚗 Vehicle Insurance Claim Prediction System</h2>
+
+    <form action="/predict" method="post">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                Gender:
+                <select class="form-control" name="Gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                Age:
+                <input class="form-control" type="number" name="Age">
+            </div>
+
+            <div class="col-md-6 mt-2">
+                Driving License:
+                <input class="form-control" type="number" name="Driving_License" value="1">
+            </div>
+
+            <div class="col-md-6 mt-2">
+                Region Code:
+                <input class="form-control" type="number" step="0.1" name="Region_Code">
+            </div>
+
+            <div class="col-md-6 mt-2">
+                Previously Insured:
+                <input class="form-control" type="number" name="Previously_Insured">
+            </div>
+
+            <div class="col-md-6 mt-2">
+                Vehicle Age:
+                <select class="form-control" name="Vehicle_Age">
+                    <option>< 1 Year</option>
+                    <option>1-2 Year</option>
+                    <option>> 2 Years</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 mt-2">
+                Vehicle Damage:
+                <select class="form-control" name="Vehicle_Damage">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+
+            <div class="col-md-6 mt-2">
+                Annual Premium:
+                <input class="form-control" type="number" name="Annual_Premium">
+            </div>
+
+            <div class="col-md-6 mt-2">
+                Policy Sales Channel:
+                <input class="form-control" type="number" name="Policy_Sales_Channel">
+            </div>
+
+            <div class="col-md-6 mt-2">
+                Vintage:
+                <input class="form-control" type="number" name="Vintage">
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="btn btn-primary w-100">Predict</button>
+
+    </form>
+
+    {% if prediction %}
+
+    <div class="result-box {% if prediction == 'Claim Likely' %}claim{% else %}no-claim{% endif %}">
+
+        <h4>{{ prediction }}</h4>
+        <p>Probability: {{ probability }}%</p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
